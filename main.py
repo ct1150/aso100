@@ -23,8 +23,8 @@ def crawler_app_rank():
         }
         data = aso100.crawler(url=url, params=params, cookies=cookies)
         time.sleep(1)
-        reslist.append(data)
-        #插入到数据库
-        mysqlcli.execute('insert into tread_rank(xxx,xxx,xxx) VALUE (yyy,yyy,yyy)')
+        reslist.append([data['a'],data['b']])
+    #批量插入到数据库
+    mysqlcli.execute_many('insert into tread_rank(xxx,xxx,xxx) VALUES (%s,%s,%s)',reslist)
 
     print('write ok')

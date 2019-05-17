@@ -1,5 +1,6 @@
 from aso100 import Aso100
 from mysqlcli import MysqlCli
+import time
 
 def crawler_app_rank():
     url = 'https://api.qimai.cn/app/rank'
@@ -21,6 +22,7 @@ def crawler_app_rank():
             "brand": "free"
         }
         data = aso100.crawler(url=url, params=params, cookies=cookies)
+        time.sleep(1)
         reslist.append(data)
         #插入到数据库
         mysqlcli.execute('insert into tread_rank(xxx,xxx,xxx) VALUE (yyy,yyy,yyy)')
